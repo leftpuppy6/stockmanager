@@ -18,8 +18,11 @@ export default function Home() {
   if (isLoading) return <div className="flex justify-center p-20 text-gray-400">読み込み中...</div>;
 
   return (
-    // SP向けに左右の余白を調整 (px-4)
-    <main className="p-4 max-w-2xl mx-auto pb-24">
+      // SP向けに左右の余白を調整 (px-4)ß
+      <main 
+          className="p-4 max-w-2xl mx-auto pb-24 select-none touch-manipulation" 
+          onContextMenu={(e) => e.preventDefault()} // 右クリック/長押しメニュー禁止
+        >
       <header className="py-6">
         <h1 className="text-3xl font-extrabold tracking-tight text-gray-900">在庫一覧</h1>
         <p className="text-sm text-gray-500">現在のストックを確認・管理します</p>

@@ -10,8 +10,8 @@ export const metadata: Metadata = {
   title: "Create T3 App",
   appleWebApp: {
     capable: true,
-    statusBarStyle: "default",
     title: "Create T3 App",
+    statusBarStyle: "black-translucent",
     // 起動画面の画像などを指定する場合はここに追加
   },
   
@@ -23,6 +23,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1, 
   userScalable: false,
+  viewportFit: "cover",
 };
 
 const geist = Geist({

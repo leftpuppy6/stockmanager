@@ -28,18 +28,22 @@
     -webkit-user-select: text;
   }
 }
-/* src/app/globals.css */
-html, body {
-  /* 画面全体のスクロールを固定し、バウンスを防ぐ */
-  overflow: hidden;
-  height: 100%;
-  position: fixed;
-  width: 100%;
-}
 
 main {
-  /* メインコンテンツだけをスクロール可能にする */
   height: 100%;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch; /* iOSでの滑らかなスクロール */
+  padding-bottom: env(safe-area-inset-bottom);
+  min-height: 100%;
+}
+
+/* src/app/globals.css */
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #f8fafc;
+  overscroll-behavior-y: none;
+  -webkit-overflow-scrolling: touch;
 }
