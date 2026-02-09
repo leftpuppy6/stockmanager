@@ -1,0 +1,62 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Post {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([name])
+}
+
+model Item {
+  id           Int           @id @default(autoincrement())
+  name         String
+  janCode      String?
+  purchaseFlag Boolean       @default(true)
+  categoryId   Int
+  category     Category      @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  shoppingList ShoppingList?
+  stocks       Stock[]
+}
+
+model Category {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  items Item[]
+}
+
+model Location {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  stock Stock[]
+}
+
+model Stock {
+  id         Int      @id @default(autoincrement())
+  itemId     Int
+  quantity   Float
+  storage   Location @relation(fields: [locationId], references: [id])
+  locationId Int
+  threshold  Float
+  updatedAt  DateTime @updatedAt
+  item       Item     @relation(fields: [itemId], references: [id], onDelete: Cascade)
+}
+
+model ShoppingList {
+  id       Int     @id @default(autoincrement())
+  itemId   Int     @unique
+  isBought Boolean @default(false)
+  quantity Float
+  item     Item    @relation(fields: [itemId], references: [id], onDelete: Cascade)
+}
+
+
