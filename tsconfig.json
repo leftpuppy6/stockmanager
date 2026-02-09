@@ -38,5 +38,15 @@
     "**/*.js",
     ".next/types/**/*.ts"
   ],
-  "exclude": ["node_modules", "generated"]
+  "exclude": [
+    "node_modules",
+    "prisma/query_engine_bg.js", 
+    "prisma/query_engine_bg.js", 
+    ".next",
+    "generated",
+    "prisma/runtime/edge-esm.js",
+    "prisma/runtime/edge.js",
+    "prisma/runtime/index-browser.js",
+    "prisma/runtime/library.js"
+  ]
 }
