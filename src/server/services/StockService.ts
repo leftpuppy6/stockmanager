@@ -1,12 +1,12 @@
 // src/server/services/StockService.ts
 
-import { type PrismaClient } from "@prisma/client";
+import { type PrismaClient, type Prisma } from "@prisma/client";
 
 export class StockService {
 constructor(private prisma: PrismaClient) {}
 
 async reduceQuantity(stockId: number, amount: number) {
-    return await this.prisma.$transaction(async (tx: any) => {
+    return await this.prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       // 1. 現在の在庫と閾値を取得
     const stock = await tx.stock.findUniqueOrThrow({
         where: { id: stockId },
