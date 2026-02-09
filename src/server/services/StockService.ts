@@ -11,7 +11,6 @@ async reduceQuantity(stockId: number, amount: number) {
     const stock = await tx.stock.findUniqueOrThrow({
         where: { id: stockId },
     });
-
     const newQuantity = Math.max(0, stock.quantity - amount);
 
     // 2. 在庫を更新
