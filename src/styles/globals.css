@@ -6,4 +6,40 @@
 }
 
 
-/* 動作確認用に、背景を強制的に赤くする設定を一時的に入れる */
+.no-select {
+  user-select: none;
+  -webkit-touch-callout: none; /* iOSでのメニュー表示禁止 */
+}
+
+@layer base {
+  body {
+    /* スクロール時のバウンス効果を抑制（アプリっぽくなります） */
+    overscroll-behavior-y: none;
+    /* テキスト選択を禁止（ボタン操作が多いアプリでは有効） */
+    -webkit-user-select: none;
+    /* タップ時のハイライト（青い枠）を消す */
+    -webkit-tap-highlight-color: transparent;
+    /* 長押しによるコンテキストメニューを禁止 */
+    -webkit-touch-callout: none;
+  }
+
+  input, textarea {
+    /* 入力項目だけは選択可能にする */
+    -webkit-user-select: text;
+  }
+}
+/* src/app/globals.css */
+html, body {
+  /* 画面全体のスクロールを固定し、バウンスを防ぐ */
+  overflow: hidden;
+  height: 100%;
+  position: fixed;
+  width: 100%;
+}
+
+main {
+  /* メインコンテンツだけをスクロール可能にする */
+  height: 100%;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch; /* iOSでの滑らかなスクロール */
+}
