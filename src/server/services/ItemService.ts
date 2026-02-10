@@ -5,12 +5,12 @@ export const ItemService = (prisma: PrismaClient) => {
   return {
     async getAllItemsWithAlerts() {
       const items = await prisma.item.findMany({
-        include: { 
+        include: {
           stocks: {
-            include: { 
-              storage: true
-            }
-          } 
+            include: {
+              storage: true,
+            },
+          },
         },
       });
       return items.map((item) => {
@@ -35,7 +35,7 @@ export const ItemService = (prisma: PrismaClient) => {
       }
 
       if (amount < 1) {
-        throw new Error("正の値を入力してください")
+        throw new Error("正の値を入力してください");
       }
 
       const newQuantity = currentStock.quantity - amount;
@@ -47,8 +47,8 @@ export const ItemService = (prisma: PrismaClient) => {
         where: { id: stockId },
         data: {
           quantity: newQuantity,
-        }
-      })
+        },
+      });
     },
 
     async addStock(stockId: number, amount: number) {
@@ -56,30 +56,35 @@ export const ItemService = (prisma: PrismaClient) => {
 
       return await prisma.stock.update({
         where: { id: stockId },
-        data: { quantity: { increment: amount } ,}
+        data: { quantity: { increment: amount } },
       });
     },
 
-async createItem(name: string, categoryId: number, threshold: number, locationId = 1) {
-  return await prisma.item.create({
-    data: {
-      name: name,
-      category: {
-        connectOrCreate: {
-          where: { id: categoryId },
-          create: { name: "未分類" }
-        }
-      },
-      stocks: {
-        create: {
-          quantity: 0,
-          threshold: threshold,
-          locationId: locationId,
+    async createItem(
+      name: string,
+      categoryId: number,
+      threshold: number,
+      locationId = 1
+    ) {
+      return await prisma.item.create({
+        data: {
+          name: name,
+          category: {
+            connectOrCreate: {
+              where: { id: categoryId },
+              create: { name: "未分類" },
+            },
+          },
+          stocks: {
+            create: {
+              quantity: 0,
+              threshold: threshold,
+              locationId: locationId,
+            },
+          },
         },
-      },
+      });
     },
-  });
-},
     async deleteItem(id: number) {
       return await prisma.item.delete({
         where: { id },
@@ -90,7 +95,7 @@ async createItem(name: string, categoryId: number, threshold: number, locationId
       return await prisma.stock.update({
         where: { id: stockId },
         data: { locationId: newLocationId },
-      })
+      });
     },
 
     async updateThreshold(stockId: number, threshold: number) {
@@ -99,15 +104,15 @@ async createItem(name: string, categoryId: number, threshold: number, locationId
       return await prisma.stock.update({
         where: { id: stockId },
         data: { threshold: threshold },
-      })
+      });
     },
 
     async updatePurchaseFlag(itemId: number, purchaseFlag: boolean) {
       return await prisma.item.update({
         where: { id: itemId },
-        data: { purchaseFlag: purchaseFlag }
-      })
-    }
+        data: { purchaseFlag: purchaseFlag },
+      });
+    },
   };
 };
 

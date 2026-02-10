@@ -40,8 +40,8 @@
   ],
   "exclude": [
     "node_modules",
-    "prisma/query_engine_bg.js", 
-    "prisma/query_engine_bg.js", 
+    "prisma/query_engine_bg.js",
+    "prisma/query_engine_bg.js",
     ".next",
     "generated",
     "prisma/runtime/edge-esm.js",

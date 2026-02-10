@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
+  --font-sans:
+    var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
-
 
 .no-select {
   user-select: none;
@@ -23,7 +23,8 @@
     -webkit-touch-callout: none;
   }
 
-  input, textarea {
+  input,
+  textarea {
     /* 入力項目だけは選択可能にする */
     -webkit-user-select: text;
   }
@@ -39,7 +40,8 @@ main {
 
 /* src/app/globals.css */
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;

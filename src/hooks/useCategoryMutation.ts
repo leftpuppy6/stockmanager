@@ -12,7 +12,7 @@ export const useCategoryMutations = () => {
   const invalidateAll = async () => {
     await utils.category.list.invalidate();
     // 在庫一覧側のプルダウンなども更新が必要な場合はここに追加
-    await utils.item.list.invalidate(); 
+    await utils.item.list.invalidate();
   };
 
   const createMutation = api.category.create.useMutation({
@@ -37,8 +37,12 @@ export const useCategoryMutations = () => {
     newCatName,
     setNewCatName,
     handleCreate: () => createMutation.mutate({ name: newCatName }),
-    handleUpdate: (id: number, name: string) => updateMutation.mutate({ id, name }),
+    handleUpdate: (id: number, name: string) =>
+      updateMutation.mutate({ id, name }),
     handleDelete: (id: number) => deleteMutation.mutate({ id }),
-    isPending: createMutation.isPending || updateMutation.isPending || deleteMutation.isPending,
+    isPending:
+      createMutation.isPending ||
+      updateMutation.isPending ||
+      deleteMutation.isPending,
   };
 };

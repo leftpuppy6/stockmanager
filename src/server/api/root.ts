@@ -15,7 +15,6 @@ export const appRouter = createTRPCRouter({
   post: postRouter,
   item: itemRouter, // これで api.item.list.useQuery() が使えるようになります
   category: categoryRouter,
-
 });
 
 // export type definition of API

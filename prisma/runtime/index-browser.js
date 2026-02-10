@@ -54,7 +54,7 @@ var ie = Symbol(),
             this,
             "new Prisma."
               .concat(this._getNamespace(), ".")
-              .concat(this._getName(), "()"),
+              .concat(this._getName(), "()")
           );
     }
     _getName() {
@@ -926,7 +926,7 @@ h.times = h.mul = function (e) {
         ? NaN
         : !d || !g
           ? e.s / 0
-          : e.s * 0,
+          : e.s * 0
     );
   for (
     i = R(l.e / m) + R(e.e / m),
@@ -1305,7 +1305,7 @@ var k = (function () {
           ? NaN
           : (O && O[0] == 0) || !S
             ? he * 0
-            : he / 0,
+            : he / 0
       );
     for (
       c
@@ -1568,17 +1568,7 @@ function be(e, n) {
     v = d.precision;
   if (!e.d || !e.d[0] || e.e > 17)
     return new d(
-      e.d
-        ? e.d[0]
-          ? e.s < 0
-            ? 0
-            : 1 / 0
-          : 1
-        : e.s
-          ? e.s < 0
-            ? 0
-            : e
-          : NaN,
+      e.d ? (e.d[0] ? (e.s < 0 ? 0 : 1 / 0) : 1) : e.s ? (e.s < 0 ? 0 : e) : NaN
     );
   for (
     n == null ? ((w = !1), (c = v)) : (c = n), u = new d(0.03125);
